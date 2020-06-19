@@ -362,7 +362,10 @@ def _adjust_merged_values_orm(env, model_name, record_ids, target_record_id,
             if op == 'max':
                 vals[field.name] = max(_list)
             elif op == 'min':
-                vals[field.name] = min(_list)
+                try:
+                    vals[field.name] = min(_list)
+                except:
+                    pass
         elif field.type == 'many2many':
             op = op or 'merge'
             if op == 'merge':
